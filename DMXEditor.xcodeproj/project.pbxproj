@@ -176,6 +176,8 @@
 			dependencies = (
 			);
 			name = DMXEditor;
+			packageProductDependencies = (
+			);
 			productName = DMXEditor;
 			productReference = A711E40F27BEE9CA009E1205 /* DMXEditor.app */;
 			productType = "com.apple.product-type.application";
@@ -204,6 +206,8 @@
 				Base,
 			);
 			mainGroup = A711E40627BEE9CA009E1205;
+			packageReferences = (
+			);
 			productRefGroup = A711E41027BEE9CA009E1205 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -382,7 +386,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"DMXEditor/Preview Content\"";
 				DEVELOPMENT_TEAM = Z6AYT6K855;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -396,7 +400,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = de.inckmann.DMXEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -410,11 +414,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_ENTITLEMENTS = DMXEditor/DMXEditor.entitlements;
+				CODE_SIGN_ENTITLEMENTS = DMXEditor/DMXEditorRelease.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"DMXEditor/Preview Content\"";
 				DEVELOPMENT_TEAM = Z6AYT6K855;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -428,7 +432,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = de.inckmann.DMXEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -24,10 +24,13 @@ struct SlideView: View {
                     }
                     
                     if (device.multipleSliders){
-                        MultiSlider(dataR: $slide.dmxData[device.address[0]], dataG: $slide.dmxData[device.address[1]], dataB: $slide.dmxData[device.address[2]])
+                        MultiSlider(
+                            dataR: $slide.dmxData[device.address[0]-1],
+                            dataG: $slide.dmxData[device.address[1]-1],
+                            dataB: $slide.dmxData[device.address[2]-1])
                             .padding(.leading)
                     } else {
-                        SingleSlider(data: $slide.dmxData[device.address[0]])
+                        SingleSlider(data: $slide.dmxData[device.address[0]-1])
                             .padding(.leading)
                     }
                 } .padding(.bottom)

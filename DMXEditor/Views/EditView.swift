@@ -6,13 +6,17 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct EditView: View {
+    let utType = UTType.utf8PlainText
     @Binding var showSettings: Bool
     @Binding var data: ProjectData
     @State private var showAlert: Bool = false
     @State private var selectedSlide: Int? = nil
     @State private var activePresentation: Bool = false
+    @State private var undefinedSlides: Bool = false
+    @State private var highestUnavailableSlides: Int = 0
     
     var body: some View {
         NavigationView{
@@ -21,6 +25,15 @@ struct EditView: View {
                     ForEach($data.slides, id: \.self.number){ slide in
                         NavigationLink("Slide \(slide.wrappedValue.number)", destination: SlideView(slide: slide, devices: $data.settings.devices))
                     }
+                }
+                .onCopyCommand{
+                    
+                    let jsonSlide = try! JSONEncoder().encode(data.slides[selectedSlide!-1])
+                    print(jsonSlide.base64EncodedString())
+                    return [NSItemProvider(object: NSString(string: jsonSlide.base64EncodedString()))]
+                }
+                .onPasteCommand(of: [self.utType]){data in
+                    loadPastedSlide(from: data)
                 }
                 .onDeleteCommand(perform: {showAlert = true})
                 .alert(isPresented: $showAlert){
@@ -58,7 +71,7 @@ struct EditView: View {
                         Text("Add Slide") .foregroundColor(Color.primary)
                     }
                 })
-                    .buttonStyle(.borderless)
+                .buttonStyle(.borderless)
                 Spacer()
             }
             
@@ -104,8 +117,8 @@ struct EditView: View {
                             .font(.title3)
                     }
                 })
-                    .padding(.trailing)
-                    .buttonStyle(.borderless)
+                .padding(.trailing)
+                .buttonStyle(.borderless)
             }
             
             ToolbarItem{
@@ -122,42 +135,97 @@ struct EditView: View {
                             .font(.title3)
                     }
                 })
-                    .padding(.trailing)
-                    .buttonStyle(.borderless)
+                .background(.selection)
+                .cornerRadius(4.0)
+                .padding(.trailing)
+                .buttonStyle(.bordered)
             }
+        }
+        .alert(isPresented: $undefinedSlides){
+            Alert(title: Text("No data available from slide \(data.slides.count + 1) to \(highestUnavailableSlides)"),
+                  message: Text("As there are no entries for the slides so far, it is recommended to add entries for these slides to the editor. Otherwise the last defined value will be lasting until the end but is not controllable by the presentation."),
+                  primaryButton: .cancel(
+                    Text("+ Add slides to editor"),
+                    action: {
+                        for i in data.slides.count...highestUnavailableSlides-1 {
+                            print("Adding Slide \(i)")
+                            if data.slides.count >= 1 {
+                                addSlide(valueOfSlide: data.slides.count)
+                            } else {
+                                addSlide()
+                            }
+                        }
+                    }),
+                  secondaryButton: .cancel())
         }
     }
     
     func present() {
         DispatchQueue.global(qos: .background).async {
-            var last: Int = 0
+            var last: Int = 1
             while activePresentation {
                 let actual = getSlide()
-                if actual != nil && actual != last{
-                    last = actual!
-                    print("slide \(last)")
+                if actual != nil && actual != last && actual! <=  data.slides.count{
                     sendValues(
                         serverAddress: data.settings.host,
                         universe: data.settings.universe,
-                        data: data.slides[last-1].dmxData)
+                        previousData: data.slides[last-1].dmxData,
+                        goalData: data.slides[actual!-1].dmxData,
+                        amountSteps: data.settings.transitionSteps,
+                        duration: data.settings.transitionDuration)
+                    last = actual!
+                } else if actual! > data.slides.count && highestUnavailableSlides != actual! {
+                    highestUnavailableSlides = actual!
+                    print("No value for slide \(actual!) available!")
                 }
+            }
+            sendValues(
+                serverAddress: data.settings.host,
+                universe: data.settings.universe,
+                data: DMXData.getDefault())
+            if highestUnavailableSlides > 0 {
+                undefinedSlides = true
             }
         }
     }
     
+    func addSlide(valueOfSlide: Int) {
+        data.slides.append(Slide(number: (data.slides.count+1), dmxData: data.slides[valueOfSlide-1].dmxData))
+    }
+    
     func addSlide() {
         if (selectedSlide != nil && data.slides.count > selectedSlide!) {
-            data.slides.append(Slide(number: (data.slides.count+1), dmxData: data.slides[selectedSlide! - 1].dmxData))
+            addSlide(valueOfSlide: selectedSlide!)
         } else {
             data.slides.append(Slide(number: (data.slides.count+1), dmxData: DMXData.getDefault()))
         }
-        
-//        if data.slides.count - 1 >= 0{
-//            data.slides.append(Slide(number: (data.slides.count+1), dmxData: data.slides[data.slides.count - 1].dmxData))
-//        } else {
-//            data.slides.append(Slide(number: (data.slides.count+1), dmxData: DMXData.getDefault()))
-//        }
     }
+    
+    func loadPastedSlide(from array: [NSItemProvider]) {
+        
+        guard let lastItem = array.last else {
+          assertionFailure("Nothing to paste")
+          return
+        }
+        lastItem.loadDataRepresentation(forTypeIdentifier: utType.identifier) {
+          (pasteData, error) in
+            guard error == nil else {
+                assertionFailure("Could not load data: \(error.debugDescription)")
+                return
+            }
+            guard let pasteData = pasteData else {
+                assertionFailure("Could not load data")
+                return
+            }
+            let parsedData = try! JSONDecoder().decode(Slide.self, from: Data(base64Encoded: pasteData)!)
+            print(parsedData)
+            if(parsedData.number == selectedSlide!){
+                data.slides.append(Slide(number: data.slides.count + 1, dmxData:  parsedData.dmxData))
+            } else {
+                data.slides[selectedSlide!-1].dmxData = parsedData.dmxData
+            }
+        }
+      }
 }
 
 struct EditView_Previews: PreviewProvider {

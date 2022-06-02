@@ -77,7 +77,6 @@ class AppleScriptRunner: ObservableObject, Hashable {
             self.state = .error(Error(error))
         }
         else {
-//            print("result: \(resultDesc)")
             self.state = .complete(resultDesc)
         }
     }

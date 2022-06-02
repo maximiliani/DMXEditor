@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct ProjectData: Identifiable, Codable {
+struct ProjectData: Identifiable, Codable, Equatable {
+    static func == (lhs: ProjectData, rhs: ProjectData) -> Bool {
+        return lhs.settings == rhs.settings && lhs.slides == rhs.slides
+    }
+    
     var id = UUID()
     var settings: Settings
     var slides: [Slide]

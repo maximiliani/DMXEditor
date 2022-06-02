@@ -93,8 +93,10 @@ struct SettingsView: View {
                             .font(.title3)
                     }
                 })
-                    .padding(.trailing)
-                    .buttonStyle(.borderless)
+                .background(.selection)
+                .cornerRadius(4.0)
+                .padding(.trailing)
+                .buttonStyle(.bordered)
             }
         }
     }

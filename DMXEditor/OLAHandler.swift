@@ -7,23 +7,59 @@
 
 import Foundation
 
+func sendValues(serverAddress: String, universe: Int = 0, previousData: [DMXData], goalData:[DMXData], amountSteps: Int, duration: Int) {
+    var valueMatrix : [[Int]] = Array(repeating: Array(repeating: 0, count: 512), count: amountSteps+1)
+    if duration > 0 {
+        for i in 0...amountSteps-1{
+            let time = i * (duration/amountSteps)
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(time)) {
+            print(i)
+            for j in 0...511 {
+                if goalData[j].value > previousData[j].value {
+                    valueMatrix[i][j] = Int(Float(previousData[j].value) + (Float(i)/Float(amountSteps)) * Float(goalData[j].value))
+                } else if goalData[j].value < previousData[j].value {
+                    valueMatrix[i][j] = Int(Float(previousData[j].value) - (Float(i)/Float(amountSteps)) * Float(goalData[j].value))
+                } else {
+                    valueMatrix[i][j] = previousData[j].value
+                }
+            }
+            }
+          sendDataToServer(universe: universe, data: valueMatrix[i], serverAddress: serverAddress)
+        }
+    }
+    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(duration)){
+        for j in 0...511 {
+            valueMatrix[amountSteps][j] = goalData[j].value
+        }
+        print("Finished sending data")
+        sendDataToServer(universe: universe, data: valueMatrix[amountSteps], serverAddress: serverAddress)
+        print(valueMatrix)
+    }
+    
+}
+
 func sendValues(serverAddress: String, universe: Int = 0, data:[DMXData]) {
     var intData: [Int] = Array(repeating: 0, count: 512)
     for i in 0...data.count-1 {
         intData[data[i].address] = data[i].value
     }
-    var result:String = ""
+    sendDataToServer(universe: universe, data: intData, serverAddress: serverAddress)
+}
+
+func sendDataToServer(universe: Int, data: [Int], serverAddress: String){
+    var result:String = "\(data[0])"
     for i in 1...511 {
-        result += ",\(intData[i])"
+        result += ",\(data[i])"
     }
     
     let url = URL(string: "\(serverAddress)/set_dmx")
-    print(url!)
     
     let script: AppleScriptRunner = AppleScriptRunner("""
-do shell script "curl -d u=\(universe) -d d=\(String(intData[0]) + result) \(url!)"
-""")
+    do shell script "curl -d u=\(universe) -d d=\(result) \(url!)"
+    """)
     script.executeSync()
-    print(script.state)
+    if type(of: script.state) == AppleScriptRunner.Error.self {
+        print(script.state)
+    }
     print("finished sending data")
 }
