@@ -27,7 +27,6 @@ struct EditView: View {
                     }
                 }
                 .onCopyCommand{
-                    
                     let jsonSlide = try! JSONEncoder().encode(data.slides[selectedSlide!-1])
                     print(jsonSlide.base64EncodedString())
                     return [NSItemProvider(object: NSString(string: jsonSlide.base64EncodedString()))]
@@ -36,6 +35,21 @@ struct EditView: View {
                     loadPastedSlide(from: data)
                 }
                 .onDeleteCommand(perform: {showAlert = true})
+                .onMoveCommand{ i in
+                    if i == MoveCommandDirection.down {
+                        if selectedSlide! > 0{
+                            selectedSlide! -= 1
+                        } else {
+                            selectedSlide! = 0
+                        }
+                    } else if i == MoveCommandDirection.up {
+                        if selectedSlide! < data.slides.count - 1{
+                            selectedSlide! += 1
+                        } else {
+                            selectedSlide! = data.slides.count - 1
+                        }
+                    }
+                }
                 .alert(isPresented: $showAlert){
                     Alert(title: Text((selectedSlide == data.slides.count) ? "Delete Slide" : "Delete Content"),
                           message: Text((selectedSlide == data.slides.count) ? "Are you sure you want to delete this slide?" : "Are you sure you want to delete the content of this slide?"),
@@ -202,13 +216,12 @@ struct EditView: View {
     }
     
     func loadPastedSlide(from array: [NSItemProvider]) {
-        
         guard let lastItem = array.last else {
-          assertionFailure("Nothing to paste")
-          return
+            assertionFailure("Nothing to paste")
+            return
         }
         lastItem.loadDataRepresentation(forTypeIdentifier: utType.identifier) {
-          (pasteData, error) in
+            (pasteData, error) in
             guard error == nil else {
                 assertionFailure("Could not load data: \(error.debugDescription)")
                 return
@@ -225,7 +238,7 @@ struct EditView: View {
                 data.slides[selectedSlide!-1].dmxData = parsedData.dmxData
             }
         }
-      }
+    }
 }
 
 struct EditView_Previews: PreviewProvider {
