@@ -25,6 +25,32 @@ struct EditView: View {
                     ForEach($data.slides, id: \.self.number){ slide in
                         NavigationLink("Slide \(slide.wrappedValue.number)", destination: SlideView(slide: slide, devices: $data.settings.devices))
                     }
+                    .onMove { indices, destination in
+                        let startIndex = indices.first!
+                        var destinationIndex:Int = destination
+            
+                        print("Start \(startIndex)")
+                        print("Dest \(destinationIndex)")
+                        
+                        if startIndex > destinationIndex {
+                            for i in destinationIndex...startIndex{
+                                print(i)
+                                data.slides[i].number = i + 2
+                            }
+                        } else if startIndex < destinationIndex {
+                            if destination > 0 {
+                                destinationIndex = destination - 1
+                            }
+                            for i in startIndex+1...destinationIndex{
+                                print(i)
+                                data.slides[i].number = i
+                            }
+                        }
+                        
+                        data.slides[startIndex].number = destinationIndex + 1
+                        data.slides.move(fromOffsets: indices, toOffset: destination)
+                        
+                    }
                 }
                 .onCopyCommand{
                     let jsonSlide = try! JSONEncoder().encode(data.slides[selectedSlide!-1])
