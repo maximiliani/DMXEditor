@@ -190,7 +190,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1320;
-				LastUpgradeCheck = 1320;
+				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					A711E40E27BEE9CA009E1205 = {
 						CreatedOnToolsVersion = 13.2.1;
@@ -295,6 +295,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -356,6 +357,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -387,12 +389,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"DMXEditor/Preview Content\"";
 				DEVELOPMENT_TEAM = Z6AYT6K855;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DMXEditor/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "DMX Editor";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSAppleEventsUsageDescription = "This app uses AppleScript to get the information about the slides from Keynote.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "©2022 Maximilian Inckmann";
@@ -419,12 +423,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"DMXEditor/Preview Content\"";
 				DEVELOPMENT_TEAM = Z6AYT6K855;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DMXEditor/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "DMX Editor";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSAppleEventsUsageDescription = "This app uses AppleScript to get the information about the slides from Keynote.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "©2022 Maximilian Inckmann";

@@ -15,6 +15,7 @@ struct EditView: View {
     @State private var showAlert: Bool = false
     @State private var selectedSlide: Int? = nil
     @State private var activePresentation: Bool = false
+    @State private var activePreview: Bool = false
     @State private var undefinedSlides: Bool = false
     @State private var highestUnavailableSlides: Int = 0
     
@@ -28,13 +29,9 @@ struct EditView: View {
                     .onMove { indices, destination in
                         let startIndex = indices.first!
                         var destinationIndex:Int = destination
-            
-                        print("Start \(startIndex)")
-                        print("Dest \(destinationIndex)")
                         
                         if startIndex > destinationIndex {
                             for i in destinationIndex...startIndex{
-                                print(i)
                                 data.slides[i].number = i + 2
                             }
                         } else if startIndex < destinationIndex {
@@ -42,7 +39,6 @@ struct EditView: View {
                                 destinationIndex = destination - 1
                             }
                             for i in startIndex+1...destinationIndex{
-                                print(i)
                                 data.slides[i].number = i
                             }
                         }
@@ -112,6 +108,7 @@ struct EditView: View {
                     }
                 })
                 .buttonStyle(.borderless)
+                
                 Spacer()
             }
             
@@ -144,18 +141,31 @@ struct EditView: View {
         .toolbar(){
             ToolbarItem{
                 Button(action: {
+                    activePreview.toggle()
+                    activePresentation = false
+                    preview()
+                }, label: {
+                    VStack{
+                        Image(systemName: activePreview ? "stop.fill" : "play.fill")
+                        Text(activePreview ? "Stop preview" : "Start preview")
+                    }
+                    .foregroundColor(.primary)
+                })
+                .padding(.trailing)
+                .buttonStyle(.borderless)
+            }
+            
+            ToolbarItem{
+                Button(action: {
                     activePresentation.toggle()
+                    activePreview = false
                     present()
                 }, label: {
-                    HStack{
+                    VStack{
                         Image(systemName: activePresentation ? "stop.fill" : "play.fill")
-                            .foregroundColor(Color.primary)
-                            .font(.title3)
-                        Text(activePresentation ? "Stop" : "Start")
-                            .fontWeight(.medium)
-                            .foregroundColor(Color.primary)
-                            .font(.title3)
+                        Text(activePresentation ? "Stop presentation" : "Start presentation")
                     }
+                    .foregroundColor(.primary)
                 })
                 .padding(.trailing)
                 .buttonStyle(.borderless)
@@ -165,20 +175,14 @@ struct EditView: View {
                 Button(action: {
                     showSettings = true
                 }, label: {
-                    HStack{
+                    VStack{
                         Image(systemName: "gear")
-                            .foregroundColor(Color.primary)
-                            .font(.title3)
                         Text("Settings")
-                            .fontWeight(.medium)
-                            .foregroundColor(Color.primary)
-                            .font(.title3)
                     }
+                    .foregroundColor(.primary)
                 })
-                .background(.selection)
-                .cornerRadius(4.0)
                 .padding(.trailing)
-                .buttonStyle(.bordered)
+                .buttonStyle(.borderless)
             }
         }
         .alert(isPresented: $undefinedSlides){
@@ -214,7 +218,7 @@ struct EditView: View {
                         amountSteps: data.settings.transitionSteps,
                         duration: data.settings.transitionDuration)
                     last = actual!
-                } else if actual! > data.slides.count && highestUnavailableSlides != actual! {
+                } else if actual != nil && actual! > data.slides.count && highestUnavailableSlides != actual! {
                     highestUnavailableSlides = actual!
                     print("No value for slide \(actual!) available!")
                 }
@@ -226,6 +230,23 @@ struct EditView: View {
             if highestUnavailableSlides > 0 {
                 undefinedSlides = true
             }
+        }
+    }
+    
+    func preview() {
+        DispatchQueue.global(qos: .background).async {
+            while activePreview {
+                if selectedSlide != nil {
+                    sendValues(
+                        serverAddress: data.settings.host,
+                        universe: data.settings.universe,
+                        data: data.slides[selectedSlide!-1].dmxData)
+                }
+            }
+            sendValues(
+                serverAddress: data.settings.host,
+                universe: data.settings.universe,
+                data: DMXData.getDefault())
         }
     }
     
