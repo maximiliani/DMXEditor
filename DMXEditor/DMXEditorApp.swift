@@ -9,8 +9,8 @@ import SwiftUI
 
 @main
 struct DMXEditorApp: App {
-    @State private var showSettings = false;
-    @State private var initialPopup = false;
+    @State private var showSettings = false
+    @State private var initialPopup = false
     
     var body: some Scene {
         DocumentGroup(newDocument: DMXEditorDocument()) { file in
