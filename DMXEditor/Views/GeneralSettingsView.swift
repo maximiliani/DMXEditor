@@ -15,18 +15,20 @@ struct GeneralSettingsView: View {
             HStack{
                 Text("Serveraddress (with portnumber)")
                     .frame(width:250)
+                Spacer()
                 TextField("http://localhost:9090", text: $settings.host)
+                    .padding(.horizontal)
                     .textFieldStyle(.roundedBorder)
-                    .frame(width:250)
             }
             .padding(.horizontal)
             
             HStack{
-                Text("Universe")
+                Text("Universe ID")
                     .frame(width:250)
+                Spacer()
                 TextField("", value: $settings.universe, format: .number)
                     .textFieldStyle(.roundedBorder)
-                    .frame(width: 250)
+                    .padding(.horizontal)
                     .disableAutocorrection(true)
                     .onSubmit {
                         print(settings.universe)
@@ -34,6 +36,29 @@ struct GeneralSettingsView: View {
                             settings.universe = 65535
                         } else if settings.universe < 0 {
                             settings.universe = 0
+                        }
+                    }
+            }
+            .padding(.horizontal)
+            
+            HStack{
+                VStack{
+                    Text("Duration of the transition in Steps")
+                        .frame(width:250)
+                    Text("(16 Steps = 1s)")
+                        .frame(width:250)
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                }
+                Spacer()
+                TextField("", value: $settings.transitionSteps, format: .number)
+                    .textFieldStyle(.roundedBorder)
+                    .padding(.horizontal)
+                    .disableAutocorrection(true)
+                    .onSubmit {
+                        print(settings.transitionSteps)
+                        if settings.transitionSteps < 0 {
+                            settings.transitionSteps = 0
                         }
                     }
             }

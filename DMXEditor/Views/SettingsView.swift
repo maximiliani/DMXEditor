@@ -30,7 +30,7 @@ struct SettingsView: View {
                         Text("Add single Device") .foregroundColor(Color.primary)
                     }
                 })
-                    .buttonStyle(.borderless)
+                .buttonStyle(.borderless)
                 
                 Spacer()
                 
@@ -45,7 +45,7 @@ struct SettingsView: View {
                         Text("Add RGB Device") .foregroundColor(Color.primary)
                     }
                 })
-                    .buttonStyle(.borderless)
+                .buttonStyle(.borderless)
                 
                 Spacer()
             }
@@ -83,18 +83,15 @@ struct SettingsView: View {
                 Button(action: {
                     showSettings = false
                 }, label: {
-                    HStack{
+                    VStack{
                         Image(systemName: "square.and.pencil")
-                            .foregroundColor(Color.primary)
-                            .font(.title3)
                         Text("Edit")
-                            .fontWeight(.medium)
-                            .foregroundColor(Color.primary)
-                            .font(.title3)
                     }
+                    .foregroundColor(.primary)
+                    .padding(.horizontal)
                 })
-                    .padding(.trailing)
-                    .buttonStyle(.borderless)
+                .padding(.horizontal)
+                .buttonStyle(.borderless)
             }
         }
     }

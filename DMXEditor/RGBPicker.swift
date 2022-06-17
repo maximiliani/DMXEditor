@@ -41,20 +41,20 @@ struct RGBPicker: View {
                         .foregroundColor(.teal)
                     Spacer()
                 })
-                    .buttonStyle(.borderless)
-                    .onSubmit {
-                        let rCol = color.cgColor?.components?[0]
-                        let gCol = color.cgColor?.components?[1]
-                        let bCol = color.cgColor?.components?[2]
-                        
-                        let r = Int((rCol ?? 0) * 255)
-                        let g = Int((gCol ?? 0) * 255)
-                        let b = Int((bCol ?? 0) * 255)
-                        
-                        red = r
-                        green = g
-                        blue = b
-                    }
+                .buttonStyle(.borderless)
+                .onSubmit {
+                    let rCol = color.cgColor?.components?[0]
+                    let gCol = color.cgColor?.components?[1]
+                    let bCol = color.cgColor?.components?[2]
+                    
+                    let r = Int((rCol ?? 0) * 255)
+                    let g = Int((gCol ?? 0) * 255)
+                    let b = Int((bCol ?? 0) * 255)
+                    
+                    red = r
+                    green = g
+                    blue = b
+                }
                 
             } else {
                 Button(action: {
@@ -66,7 +66,7 @@ struct RGBPicker: View {
                     //                        .padding()
                     Spacer()
                 })
-                    .buttonStyle(.borderless)
+                .buttonStyle(.borderless)
             }
             
             Text("R \(red)")

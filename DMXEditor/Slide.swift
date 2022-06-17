@@ -7,9 +7,9 @@
 
 import Foundation
 import UniformTypeIdentifiers
+import SwiftUI
 
 struct Slide: Identifiable, Codable, Hashable {
-    
     static func == (lhs: Slide, rhs: Slide) -> Bool {
         return lhs.number == rhs.number
     }

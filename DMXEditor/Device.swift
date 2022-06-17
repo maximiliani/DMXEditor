@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Device: Identifiable, Codable {
+struct Device: Identifiable, Codable, Equatable {
     var id = UUID()
     var name: String
     var multipleSliders: Bool

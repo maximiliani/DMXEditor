@@ -5,8 +5,10 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeIconFile</key>
+			<string>FileIcon</string>
 			<key>CFBundleTypeIconSystemGenerated</key>
-			<integer>1</integer>
+			<integer>0</integer>
 			<key>CFBundleTypeName</key>
 			<string>DMXEditor Document</string>
 			<key>CFBundleTypeRole</key>
@@ -20,7 +22,14 @@
 			<key>NSDocumentClass</key>
 			<string>NSDocument</string>
 			<key>NSUbiquitousDocumentUserActivityType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).example-document</string>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).dmxDoc</string>
+		</dict>
+	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
 		</dict>
 	</array>
 	<key>NSServices</key>
@@ -36,8 +45,12 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>DMXEditor Document</string>
+			<key>UTTypeIconFile</key>
+			<string>FileIcon</string>
 			<key>UTTypeIcons</key>
 			<dict>
+				<key>UTTypeIconBadgeName</key>
+				<string>FileIcon</string>
 				<key>UTTypeIconText</key>
 				<string>dmxDoc</string>
 			</dict>
@@ -62,13 +75,13 @@
 			<key>UTTypeDescription</key>
 			<string>DMXEditor Document</string>
 			<key>UTTypeIconFile</key>
-			<string></string>
+			<string>FileIcon</string>
 			<key>UTTypeIcons</key>
 			<dict>
 				<key>UTTypeIconBackgroundName</key>
 				<string></string>
 				<key>UTTypeIconBadgeName</key>
-				<string></string>
+				<string>FileIcon</string>
 				<key>UTTypeIconText</key>
 				<string>dmxDoc</string>
 			</dict>
