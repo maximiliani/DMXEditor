@@ -30,7 +30,7 @@ struct SettingsView: View {
                         Text("Add single Device") .foregroundColor(Color.primary)
                     }
                 })
-                    .buttonStyle(.borderless)
+                .buttonStyle(.borderless)
                 
                 Spacer()
                 
@@ -45,7 +45,7 @@ struct SettingsView: View {
                         Text("Add RGB Device") .foregroundColor(Color.primary)
                     }
                 })
-                    .buttonStyle(.borderless)
+                .buttonStyle(.borderless)
                 
                 Spacer()
             }

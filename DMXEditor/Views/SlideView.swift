@@ -28,7 +28,7 @@ struct SlideView: View {
                             dataR: $slide.dmxData[device.address[0]-1],
                             dataG: $slide.dmxData[device.address[1]-1],
                             dataB: $slide.dmxData[device.address[2]-1])
-                            .padding(.leading)
+                        .padding(.leading)
                     } else {
                         SingleSlider(data: $slide.dmxData[device.address[0]-1])
                             .padding(.leading)
