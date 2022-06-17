@@ -17,7 +17,6 @@ struct Settings: Identifiable, Codable, Equatable {
     var universe: Int = 0
     var devices: [Device]
     var transitionSteps: Int = 0
-    var transitionDuration: Int = 2000
     
     func getHighestAddress() -> Int {
         var maxAddress = 0

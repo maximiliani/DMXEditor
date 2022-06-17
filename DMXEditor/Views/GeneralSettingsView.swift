@@ -23,7 +23,7 @@ struct GeneralSettingsView: View {
             .padding(.horizontal)
             
             HStack{
-                Text("Universe")
+                Text("Universe ID")
                     .frame(width:250)
                 Spacer()
                 TextField("", value: $settings.universe, format: .number)
@@ -42,8 +42,14 @@ struct GeneralSettingsView: View {
             .padding(.horizontal)
             
             HStack{
-                Text("Amount of transition steps")
-                    .frame(width:250)
+                VStack{
+                    Text("Duration of the transition in Steps")
+                        .frame(width:250)
+                    Text("(16 Steps = 1s)")
+                        .frame(width:250)
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                }
                 Spacer()
                 TextField("", value: $settings.transitionSteps, format: .number)
                     .textFieldStyle(.roundedBorder)
@@ -51,33 +57,8 @@ struct GeneralSettingsView: View {
                     .disableAutocorrection(true)
                     .onSubmit {
                         print(settings.transitionSteps)
-                        if settings.transitionSteps > 256 {
-                            settings.transitionSteps = 256
-                        } else if settings.transitionSteps < 0 {
+                        if settings.transitionSteps < 0 {
                             settings.transitionSteps = 0
-                        }
-                    }
-            }
-            .padding(.horizontal)
-            
-            HStack{
-                VStack{
-                    Text("Duration of the transition in ms")
-                        .frame(width:250)
-                    Text("(1000ms = 1s)")
-                        .frame(width:250)
-                        .font(.footnote)
-                        .foregroundColor(.gray)
-                }
-                Spacer()
-                TextField("", value: $settings.transitionDuration, format: .number)
-                    .textFieldStyle(.roundedBorder)
-                    .padding(.horizontal)
-                    .disableAutocorrection(true)
-                    .onSubmit {
-                        print(settings.transitionDuration)
-                        if settings.transitionDuration < 0{
-                            settings.transitionDuration = 0
                         }
                     }
             }

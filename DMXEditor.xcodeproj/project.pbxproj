@@ -11,7 +11,7 @@
 		A711E41527BEE9CA009E1205 /* DMXEditorDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = A711E41427BEE9CA009E1205 /* DMXEditorDocument.swift */; };
 		A711E41927BEE9CB009E1205 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A711E41827BEE9CB009E1205 /* Assets.xcassets */; };
 		A711E41C27BEE9CB009E1205 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A711E41B27BEE9CB009E1205 /* Preview Assets.xcassets */; };
-		A7AAEE8427CCFEF200B7BBA7 /* AppleScriptRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AAEE8327CCFEF200B7BBA7 /* AppleScriptRunner.swift */; };
+		A770FBAD285CF06800BBA4AF /* AppleScriptRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A770FBAC285CF06800BBA4AF /* AppleScriptRunner.swift */; };
 		A7AAEE8727CD2AC400B7BBA7 /* OLAHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AAEE8627CD2AC400B7BBA7 /* OLAHandler.swift */; };
 		A7AAEE8927CD36EB00B7BBA7 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AAEE8827CD36EB00B7BBA7 /* GeneralSettingsView.swift */; };
 		A7E7BC2627BEEACE000A83BB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E7BC1927BEEACE000A83BB /* SettingsView.swift */; };
@@ -40,7 +40,7 @@
 		A711E41B27BEE9CB009E1205 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A711E41D27BEE9CB009E1205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A711E41E27BEE9CB009E1205 /* DMXEditor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DMXEditor.entitlements; sourceTree = "<group>"; };
-		A7AAEE8327CCFEF200B7BBA7 /* AppleScriptRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleScriptRunner.swift; sourceTree = "<group>"; };
+		A770FBAC285CF06800BBA4AF /* AppleScriptRunner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleScriptRunner.swift; sourceTree = "<group>"; };
 		A7AAEE8627CD2AC400B7BBA7 /* OLAHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OLAHandler.swift; sourceTree = "<group>"; };
 		A7AAEE8827CD36EB00B7BBA7 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		A7E7BC1927BEEACE000A83BB /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -153,8 +153,8 @@
 		A7E7BC3B27C5156C000A83BB /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				A770FBAC285CF06800BBA4AF /* AppleScriptRunner.swift */,
 				A7E7BC3C27C5158E000A83BB /* KeynoteHandler.swift */,
-				A7AAEE8327CCFEF200B7BBA7 /* AppleScriptRunner.swift */,
 				A7AAEE8627CD2AC400B7BBA7 /* OLAHandler.swift */,
 			);
 			name = Logic;
@@ -244,7 +244,6 @@
 				A7E7BC3827C171E6000A83BB /* SingleSliderEditable.swift in Sources */,
 				A7E7BC2727BEEACE000A83BB /* MultiSlider.swift in Sources */,
 				A7E7BC2C27BEEACE000A83BB /* Settings.swift in Sources */,
-				A7AAEE8427CCFEF200B7BBA7 /* AppleScriptRunner.swift in Sources */,
 				A7E7BC3027BEEACE000A83BB /* Device.swift in Sources */,
 				A7E7BC2927BEEACE000A83BB /* EditView.swift in Sources */,
 				A7E7BC2E27BEEACE000A83BB /* SingleSlider.swift in Sources */,
@@ -252,6 +251,7 @@
 				A7E7BC2D27BEEACE000A83BB /* NumberField.swift in Sources */,
 				A7E7BC3627C13406000A83BB /* MultiSliderEditable.swift in Sources */,
 				A7AAEE8927CD36EB00B7BBA7 /* GeneralSettingsView.swift in Sources */,
+				A770FBAD285CF06800BBA4AF /* AppleScriptRunner.swift in Sources */,
 				A7E7BC2B27BEEACE000A83BB /* Slide.swift in Sources */,
 				A7E7BC2F27BEEACE000A83BB /* SlideView.swift in Sources */,
 				A7E7BC2A27BEEACE000A83BB /* ProjectData.swift in Sources */,

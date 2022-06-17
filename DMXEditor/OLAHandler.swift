@@ -7,12 +7,10 @@
 
 import Foundation
 
-func sendValues(serverAddress: String, universe: Int = 0, previousData: [DMXData], goalData:[DMXData], amountSteps: Int, duration: Int) {
+func sendValues(serverAddress: String, universe: Int = 0, previousData: [DMXData], goalData:[DMXData], amountSteps: Int) {
     var valueMatrix : [[Int]] = Array(repeating: Array(repeating: 0, count: 512), count: amountSteps+1)
-    if duration > 0 {
+    if amountSteps > 0 {
         for i in 0...amountSteps-1{
-//            let time = i * (duration/amountSteps)
-//            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(time)) {
                 for j in 0...511 {
                     if goalData[j].value > previousData[j].value {
                         valueMatrix[i][j] = Int(Float(previousData[j].value) + (Float(i)/Float(amountSteps)) * Float(goalData[j].value - previousData[j].value))
@@ -29,18 +27,17 @@ func sendValues(serverAddress: String, universe: Int = 0, previousData: [DMXData
                     }
                 }
                 sendDataToServer(universe: universe, data: valueMatrix[i], serverAddress: serverAddress)
-//            }
         }
     }
     
-    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(duration)){
+//    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(Int((amountSteps/16)*1000))){
         for j in 0...511 {
             valueMatrix[amountSteps][j] = goalData[j].value
         }
         sendDataToServer(universe: universe, data: valueMatrix[amountSteps], serverAddress: serverAddress)
         print("Finished sending data")
         print(valueMatrix)
-    }
+//    }
     
 }
 

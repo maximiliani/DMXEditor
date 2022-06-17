@@ -215,8 +215,7 @@ struct EditView: View {
                         universe: data.settings.universe,
                         previousData: data.slides[last-1].dmxData,
                         goalData: data.slides[actual!-1].dmxData,
-                        amountSteps: data.settings.transitionSteps,
-                        duration: data.settings.transitionDuration)
+                        amountSteps: data.settings.transitionSteps)
                     last = actual!
                 } else if actual != nil && actual! > data.slides.count && highestUnavailableSlides != actual! {
                     highestUnavailableSlides = actual!

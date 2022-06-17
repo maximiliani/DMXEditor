@@ -9,6 +9,7 @@ import Foundation
 
 var script: AppleScriptRunner = AppleScriptRunner("""
 property selectedSlide : 0
+delay 0.5
 tell application "Keynote"
     set selectedSlide to slide number of current slide of front document
 end tell
