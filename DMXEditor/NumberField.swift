@@ -15,7 +15,7 @@ struct NumberField: View {
     var body: some View {
         TextField("", value: $value, format: .number)
             .textFieldStyle(.roundedBorder)
-            .frame(width: 45)
+            .frame(width: 65)
             .disableAutocorrection(true)
             .onSubmit {
                 print(value)

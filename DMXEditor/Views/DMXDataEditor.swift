@@ -1,16 +1,16 @@
 ////
-////  SlideView.swift
-////  DMXEditorForKeynote
+////  DMXDataEditor.swift
+////  DMXEditor
 ////
-////  Created by Maximilian Inckmann on 14.02.22.
+////  Created by Maximilian Inckmann on 11.11.22.
 ////
 //
 //import SwiftUI
 //
-//struct SlideView: View {
-//    @Binding var slide: Slide
+//struct DMXDataEditor: View {
+//    @Binding var dmxData: [DMXData]
 //    @Binding var devices: [Device]
-//
+//    
 //    var body: some View {
 //        ScrollView {
 //            ForEach(devices){ device in
@@ -19,18 +19,18 @@
 //                        Text(device.name)
 //                            .bold()
 //                            .font(.title3)
-//
+//                        
 //                        Spacer()
 //                    }
-//
+//                    
 //                    if (device.multipleSliders){
 //                        MultiSlider(
-//                            dataR: $slide.dmxData[device.address[0]-1],
-//                            dataG: $slide.dmxData[device.address[1]-1],
-//                            dataB: $slide.dmxData[device.address[2]-1])
+//                            dataR: $dmxData[device.address[0]-1],
+//                            dataG: $dmxData[device.address[1]-1],
+//                            dataB: $dmxData[device.address[2]-1])
 //                        .padding(.leading)
 //                    } else {
-//                        SingleSlider(data: $slide.dmxData[device.address[0]-1])
+//                        SingleSlider(data: $dmxData[device.address[0]-1])
 //                            .padding(.leading)
 //                    }
 //                } .padding(.bottom)
@@ -40,8 +40,9 @@
 //    }
 //}
 //
-//struct SlideView_Previews: PreviewProvider {
+//struct DMXDataEditor_Previews: PreviewProvider {
 //    static var previews: some View {
-//        SlideView(slide: .constant(Slide(number: 1, dmxData: [DMXData(address: 0, value: 1)], frames: [])), devices: .constant(ProjectData.defaultData.settings.devices))
+//        DMXDataEditor(dmxData: .constant([DMXData(address: 0, value: 1)]), devices: .constant(ProjectData.defaultData.settings.devices))
+//        
 //    }
 //}
