@@ -62,8 +62,6 @@ struct TimerView: View {
                 }
             }
             .padding()
-            
-//            DMXDataEditor(dmxData: $delay.dmxData, devices: $devices)
         }
     }
 }

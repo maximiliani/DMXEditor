@@ -41,7 +41,7 @@ struct EditView: View {
                         .onMove { indices, destination in
                             let startIndex = indices.first!
                             var destinationIndex:Int = destination
-
+                            
                             if startIndex > destinationIndex {
                                 for i in destinationIndex...startIndex{
                                     data.slides[i].number = i + 2
@@ -54,7 +54,7 @@ struct EditView: View {
                                     data.slides[i].number = i
                                 }
                             }
-
+                            
                             data.slides[startIndex].number = destinationIndex + 1
                             data.slides.move(fromOffsets: indices, toOffset: destination)
                         }
@@ -294,13 +294,11 @@ struct EditView: View {
             while activePresentation {
                 let actual = getSlide()
                 if actual != nil && actual != last && actual! <=  data.slides.count {
-//                    if(actual != last){
-                        for i in activeTasks{
-                            i.cancel()
-                        }
-                        activeTasks = []
-                        print("Cancelled all Tasks")
-//                    }
+                    for i in activeTasks{
+                        i.cancel()
+                    }
+                    activeTasks = []
+                    print("Cancelled all Tasks")
                     for i in data.slides[actual!-1].frames{
                         activeTasks.append(Task(priority:.background){
                             let preSleepSlide: Int = getSlide()!

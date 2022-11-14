@@ -12,7 +12,6 @@
 		A711E41927BEE9CB009E1205 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A711E41827BEE9CB009E1205 /* Assets.xcassets */; };
 		A711E41C27BEE9CB009E1205 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A711E41B27BEE9CB009E1205 /* Preview Assets.xcassets */; };
 		A74CC46D291E74D70069F387 /* Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74CC46C291E74D70069F387 /* Frame.swift */; };
-		A74CC46F291E8C1F0069F387 /* DMXDataEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74CC46E291E8C1F0069F387 /* DMXDataEditor.swift */; };
 		A74CC471291E8E290069F387 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74CC470291E8E290069F387 /* TimerView.swift */; };
 		A770FBAD285CF06800BBA4AF /* AppleScriptRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A770FBAC285CF06800BBA4AF /* AppleScriptRunner.swift */; };
 		A7AAEE8727CD2AC400B7BBA7 /* OLAHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AAEE8627CD2AC400B7BBA7 /* OLAHandler.swift */; };
@@ -26,7 +25,6 @@
 		A7E7BC2C27BEEACE000A83BB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E7BC1F27BEEACE000A83BB /* Settings.swift */; };
 		A7E7BC2D27BEEACE000A83BB /* NumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E7BC2027BEEACE000A83BB /* NumberField.swift */; };
 		A7E7BC2E27BEEACE000A83BB /* SingleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E7BC2127BEEACE000A83BB /* SingleSlider.swift */; };
-		A7E7BC2F27BEEACE000A83BB /* SlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E7BC2227BEEACE000A83BB /* SlideView.swift */; };
 		A7E7BC3027BEEACE000A83BB /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E7BC2327BEEACE000A83BB /* Device.swift */; };
 		A7E7BC3227BEEACE000A83BB /* RGBPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E7BC2527BEEACE000A83BB /* RGBPicker.swift */; };
 		A7E7BC3627C13406000A83BB /* MultiSliderEditable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E7BC3527C13406000A83BB /* MultiSliderEditable.swift */; };
@@ -44,7 +42,6 @@
 		A711E41D27BEE9CB009E1205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A711E41E27BEE9CB009E1205 /* DMXEditor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DMXEditor.entitlements; sourceTree = "<group>"; };
 		A74CC46C291E74D70069F387 /* Frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frame.swift; sourceTree = "<group>"; };
-		A74CC46E291E8C1F0069F387 /* DMXDataEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMXDataEditor.swift; sourceTree = "<group>"; };
 		A74CC470291E8E290069F387 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		A770FBAC285CF06800BBA4AF /* AppleScriptRunner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleScriptRunner.swift; sourceTree = "<group>"; };
 		A7AAEE8627CD2AC400B7BBA7 /* OLAHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OLAHandler.swift; sourceTree = "<group>"; };
@@ -58,7 +55,6 @@
 		A7E7BC1F27BEEACE000A83BB /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		A7E7BC2027BEEACE000A83BB /* NumberField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberField.swift; sourceTree = "<group>"; };
 		A7E7BC2127BEEACE000A83BB /* SingleSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleSlider.swift; sourceTree = "<group>"; };
-		A7E7BC2227BEEACE000A83BB /* SlideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideView.swift; sourceTree = "<group>"; };
 		A7E7BC2327BEEACE000A83BB /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		A7E7BC2527BEEACE000A83BB /* RGBPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RGBPicker.swift; sourceTree = "<group>"; };
 		A7E7BC3527C13406000A83BB /* MultiSliderEditable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSliderEditable.swift; sourceTree = "<group>"; };
@@ -150,10 +146,8 @@
 			children = (
 				A7E7BC1C27BEEACE000A83BB /* EditView.swift */,
 				A7E7BC1927BEEACE000A83BB /* SettingsView.swift */,
-				A7E7BC2227BEEACE000A83BB /* SlideView.swift */,
 				A7E7BC3927C2C48C000A83BB /* SlideEditView.swift */,
 				A7AAEE8827CD36EB00B7BBA7 /* GeneralSettingsView.swift */,
-				A74CC46E291E8C1F0069F387 /* DMXDataEditor.swift */,
 				A74CC470291E8E290069F387 /* TimerView.swift */,
 			);
 			path = Views;
@@ -250,7 +244,6 @@
 				A7E7BC2627BEEACE000A83BB /* SettingsView.swift in Sources */,
 				A7E7BC3227BEEACE000A83BB /* RGBPicker.swift in Sources */,
 				A74CC471291E8E290069F387 /* TimerView.swift in Sources */,
-				A74CC46F291E8C1F0069F387 /* DMXDataEditor.swift in Sources */,
 				A7E7BC3A27C2C48C000A83BB /* SlideEditView.swift in Sources */,
 				A7E7BC3827C171E6000A83BB /* SingleSliderEditable.swift in Sources */,
 				A7E7BC2727BEEACE000A83BB /* MultiSlider.swift in Sources */,
@@ -265,7 +258,6 @@
 				A7AAEE8927CD36EB00B7BBA7 /* GeneralSettingsView.swift in Sources */,
 				A770FBAD285CF06800BBA4AF /* AppleScriptRunner.swift in Sources */,
 				A7E7BC2B27BEEACE000A83BB /* Slide.swift in Sources */,
-				A7E7BC2F27BEEACE000A83BB /* SlideView.swift in Sources */,
 				A7E7BC2A27BEEACE000A83BB /* ProjectData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

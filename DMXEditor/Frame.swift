@@ -11,9 +11,6 @@ struct Frame: Identifiable, Codable, Hashable, Comparable {
     static func < (lhs: Frame, rhs: Frame) -> Bool {
         return lhs.relativeTimeInSeconds < rhs.relativeTimeInSeconds
     }
-//    static func == (lhs: Frame, rhs: Frame) -> Bool {
-//        return lhs.relativeTimeInSeconds == rhs.relativeTimeInSeconds
-//    }
     
     var id = UUID()
     var relativeTimeInSeconds: Double

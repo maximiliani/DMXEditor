@@ -35,7 +35,7 @@ struct Slide: Identifiable, Codable, Hashable {
     
     init(number: Int, dmxData: [DMXData]?, frames: [Frame]?){
         self.number = number
-            
+        
         if(frames != nil) {
             self.frames = frames!
         } else {
@@ -43,11 +43,9 @@ struct Slide: Identifiable, Codable, Hashable {
         }
         
         if(dmxData != nil) {
-//            self.dmxData = dmxData!
             self.frames.append(Frame(relativeTimeInSeconds: 0, dmxData: dmxData!))
         } else {
             self.frames.append(Frame(relativeTimeInSeconds: 0, dmxData: DMXData.getDefault()))
-//            self.dmxData = DMXData.getDefault()
         }
         
         self.frames.sort()
@@ -55,7 +53,7 @@ struct Slide: Identifiable, Codable, Hashable {
     
     init(number: Int, frames: [Frame]?){
         self.number = number
-            
+        
         if(frames != nil) {
             self.frames = frames!
         } else {
@@ -67,6 +65,5 @@ struct Slide: Identifiable, Codable, Hashable {
     
     var id = UUID()
     var number: Int
-//    var dmxData: [DMXData]
     var frames: [Frame]
 }
