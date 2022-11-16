@@ -18,7 +18,7 @@ struct SingleSliderEditable: View {
                 .frame(maxWidth: 125)
             
             Text("Address: ")
-            NumberField(value: $device.address[0], min: 0, max: 511)
+            NumberField(value: $device.address[0], min: 1, max: 511)
         }
     }
 }

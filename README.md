@@ -8,6 +8,3 @@ This macOS-App controls OLA with Keynote. For further information on OLA, have a
 4. Modify the Settings for the devices, the OLA host and the universe.
 5. Add slides in the Edit-View
 6. Have fun!
-
-## Contribution, Distribution and License
-I still haven't decided for a license yet. So please just use the App or ask me for permission for other purposes like distribution, modifications, etc. .  

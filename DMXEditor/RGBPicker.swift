@@ -63,7 +63,6 @@ struct RGBPicker: View {
                     Spacer()
                     Text("Show Picker")
                         .foregroundColor(.teal)
-                    //                        .padding()
                     Spacer()
                 })
                 .buttonStyle(.borderless)
