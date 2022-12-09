@@ -7,6 +7,20 @@
 
 import Foundation
 
+func sendAnimatedValues(serverAddress: String, universe: Int = 0, previousData: [DMXData], goalData:[DMXData], transition: DMXTransition) {
+    let valueMatrix = transition.animate(from: previousData, to: goalData)
+    for i in valueMatrix {
+        var values: [Int] = []
+        for j in i {
+            values.append(j.value)
+        }
+        print(values)
+        sendDataToServer(universe: universe, data: values, serverAddress: serverAddress)
+    }
+    print("Finished sending data")
+    //    print(valueMatrix)
+}
+
 func sendValues(serverAddress: String, universe: Int = 0, previousData: [DMXData], goalData:[DMXData], amountSteps: Int) {
     var valueMatrix : [[Int]] = Array(repeating: Array(repeating: 0, count: 512), count: amountSteps+1)
     if amountSteps > 0 {

@@ -9,7 +9,7 @@ import Foundation
 import UniformTypeIdentifiers
 import SwiftUI
 
-struct Slide: Identifiable, Codable, Hashable {
+struct Slide: Identifiable, Codable, Equatable, Hashable {
     static func == (lhs: Slide, rhs: Slide) -> Bool {
         return lhs.number == rhs.number
     }
@@ -30,7 +30,6 @@ struct Slide: Identifiable, Codable, Hashable {
         if let data0 = try values.decodeIfPresent([DMXData].self, forKey: .dmxData){
             frames.append(Frame(relativeTimeInSeconds: 0, dmxData: data0))
         }
-        
     }
     
     init(number: Int, dmxData: [DMXData]?, frames: [Frame]?){
