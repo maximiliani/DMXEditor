@@ -191,7 +191,7 @@ struct EditView: View {
                 if let selectedSlide, let selectedFrame = selectedFrame, let frameIndex = data.slides[selectedSlide-1].frames.firstIndex(where: { f in
                     return f.id == selectedFrame.id
                 }){
-                    TimerView(slide: $data.slides[selectedSlide-1], frame: $data.slides[selectedSlide-1].frames[frameIndex], devices: $data.settings.devices)
+                    FrameView(slide: $data.slides[selectedSlide-1], frame: $data.slides[selectedSlide-1].frames[frameIndex], devices: $data.settings.devices)
                 } else {
                     VStack{
                         Text("To start you must first create slides and configure devices.")
@@ -308,11 +308,12 @@ struct EditView: View {
                                 try await Task.sleep(nanoseconds: delayInNs)
                             }
                             print("Sending data with delay of \(delayInNs) ns - Slide \(preSleepSlide)")
-                            sendValues(serverAddress: data.settings.host,
-                                       universe: data.settings.universe,
-                                       previousData: lastDMXData,
-                                       goalData: i.dmxData,
-                                       amountSteps: data.settings.transitionSteps)
+                            sendAnimatedValues(
+                                serverAddress: data.settings.host,
+                                universe: data.settings.universe,
+                                previousData: lastDMXData,
+                                goalData: i.dmxData,
+                                transition: i.transition)
                             lastDMXData = i.dmxData
                         })
                     }
