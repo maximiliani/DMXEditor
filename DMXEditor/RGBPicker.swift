@@ -12,37 +12,12 @@ struct RGBPicker: View {
     @Binding var red: Int
     @Binding var green: Int
     @Binding var blue: Int
-    @State private var showPicker = false
     
     var body: some View {
         VStack{
-            if(showPicker){
-                ColorPicker("", selection: $color)
-                    .controlSize(.large)
-                    .onChange(of: color) { [color] newState in
-                        let rCol = color.cgColor?.components?[0]
-                        let gCol = color.cgColor?.components?[1]
-                        let bCol = color.cgColor?.components?[2]
-                        
-                        let r = Int((rCol ?? 0) * 255)
-                        let g = Int((gCol ?? 0) * 255)
-                        let b = Int((bCol ?? 0) * 255)
-                        
-                        red = r
-                        green = g
-                        blue = b
-                    }
-                
-                Button(action: {
-                    showPicker = false
-                }, label: {
-                    Spacer()
-                    Text("Submit")
-                        .foregroundColor(.teal)
-                    Spacer()
-                })
-                .buttonStyle(.borderless)
-                .onSubmit {
+            ColorPicker("", selection: $color)
+                .controlSize(.large)
+                .onChange(of: color) { [color] newState in
                     let rCol = color.cgColor?.components?[0]
                     let gCol = color.cgColor?.components?[1]
                     let bCol = color.cgColor?.components?[2]
@@ -55,25 +30,10 @@ struct RGBPicker: View {
                     green = g
                     blue = b
                 }
-                
-            } else {
-                Button(action: {
-                    showPicker = true
-                }, label: {
-                    Spacer()
-                    Text("Show Picker")
-                        .foregroundColor(.teal)
-                    //                        .padding()
-                    Spacer()
-                })
-                .buttonStyle(.borderless)
-            }
-            
-            Text("R \(red)")
+
+            Text("RGB \(red) \(green) \(blue)")
                 .foregroundColor(.teal)
-            Text("G \(green)")
-                .foregroundColor(.teal)
-            Text("B \(blue)")
+            Text("Hex \(String(format:"%02X", red))\(String(format:"%02X", green))\(String(format:"%02X", blue))")
                 .foregroundColor(.teal)
         }
         .padding()

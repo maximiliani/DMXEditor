@@ -22,17 +22,17 @@ struct MultiSliderEditable: View {
             HStack {
                 HStack {
                     Text("Address: ")
-                    NumberField(value: $device.address[0], min: 0, max: 511)
+                    NumberField(value: $device.address[0], min: 1, max: 511)
                 }
                 
                 HStack {
                     Text("Address: ")
-                    NumberField(value: $device.address[1], min: 0, max: 511)
+                    NumberField(value: $device.address[1], min: 1, max: 511)
                 }
                 
                 HStack {
                     Text("Address: ")
-                    NumberField(value: $device.address[2], min: 0, max: 511)
+                    NumberField(value: $device.address[2], min: 1, max: 511)
                 }
             }
         }

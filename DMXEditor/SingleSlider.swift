@@ -28,7 +28,7 @@ struct SingleSlider: View {
             
             Stepper(value: $data.value, in: 0...255){
                 NumberField(value: $data.value, min: 0, max: 255)
-            }
+            }.frame(minWidth:50)
         }
         .frame(minWidth: 400)
     }

@@ -9,8 +9,20 @@ import Foundation
 
 struct DMXData: Identifiable, Codable, Hashable {
     var id = UUID()
-    var address: Int
-    var value: Int
+    var address: Int { didSet {
+        if(address > 511){
+            address = 511
+        } else if (address < 1){
+            address = 1
+        }
+    }}
+    var value: Int { didSet {
+        if(value > 255){
+            value = 255
+        } else if (value < 0){
+            value = 0
+        }
+    }}
     
     static func getDefault() -> [DMXData]{
         var result: [DMXData] = []

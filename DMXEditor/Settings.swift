@@ -9,14 +9,13 @@ import Foundation
 
 struct Settings: Identifiable, Codable, Equatable {
     static func == (lhs: Settings, rhs: Settings) -> Bool {
-        return lhs.host == rhs.host && lhs.universe == rhs.universe && lhs.devices == rhs.devices && lhs.transitionSteps == rhs.transitionSteps
+        return lhs.host == rhs.host && lhs.universe == rhs.universe && lhs.devices == rhs.devices
     }
     
     var id = UUID()
     var host: String
     var universe: Int = 0
     var devices: [Device]
-    var transitionSteps: Int = 0
     
     func getHighestAddress() -> Int {
         var maxAddress = 0
