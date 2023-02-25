@@ -41,29 +41,6 @@ struct GeneralSettingsView: View {
             }
             .padding(.horizontal)
             
-            HStack{
-                VStack{
-                    Text("Duration of the transition in Steps")
-                        .frame(width:250)
-                    Text("(16 Steps = 1s)")
-                        .frame(width:250)
-                        .font(.footnote)
-                        .foregroundColor(.gray)
-                }
-                Spacer()
-                TextField("", value: $settings.transitionSteps, format: .number)
-                    .textFieldStyle(.roundedBorder)
-                    .padding(.horizontal)
-                    .disableAutocorrection(true)
-                    .onSubmit {
-                        print(settings.transitionSteps)
-                        if settings.transitionSteps < 0 {
-                            settings.transitionSteps = 0
-                        }
-                    }
-            }
-            .padding(.horizontal)
-            
             Spacer()
         }
     }

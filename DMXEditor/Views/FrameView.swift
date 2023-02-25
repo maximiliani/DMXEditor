@@ -41,31 +41,38 @@ struct FrameView: View {
                 
                 HStack {
                     Picker(selection: $frame.transition.mode, label: Text("Animation mode")) {
-                        Text("No Animation").tag(DMXTransition.AnimationMode.none)
-                        Text("Linear Animation").tag(DMXTransition.AnimationMode.linear)
-                        Text("Bezier Animation").tag(DMXTransition.AnimationMode.bezier)
+                        Text("No Animation")
+                            .tag(DMXTransition.AnimationMode.none)
+                        Text("Linear Animation")
+                            .tag(DMXTransition.AnimationMode.linear)
+                        Text("Fade in - Fade out")
+                            .tag(DMXTransition.AnimationMode.fadeInFadeOut)
+                        Text("Custom Bezier Animation")
+                            .tag(DMXTransition.AnimationMode.bezier)
                     }
                     
                     switch(frame.transition.mode){
-                        case .linear:
-                            HStack{
-                                Text("Steps")
-                                NumberField(value: $frame.transition.steps)
-                            }
+                        case .linear: StepPicker(steps: $frame.transition.steps)
                         case .bezier:
                             HStack{
-                                Text("Steps")
-                                NumberField(value: $frame.transition.steps)
+                                StepPicker(steps: $frame.transition.steps)
                                 Button("Adjust Bezier Curve"){
-                                    let controlPoint0 = frame.transition.bezierPoint0
-                                    let controlPoint1 = frame.transition.bezierPoint1
-                                    if (controlPoint0 != .zero && controlPoint1 != .zero){
-                                        initialPoint0 = .init(
-                                            width: controlPoint0.x,
-                                            height: controlPoint0.y)
-                                        initialPoint1 = .init(
-                                            width: controlPoint1.x,
-                                            height: controlPoint1.y)
+                                    if(frame.transition.bezierPoint0 != .zero && frame.transition.bezierPoint1 != .zero){
+                                        let controlPoint0 = frame.transition.bezierPoint0
+                                        let controlPoint1 = frame.transition.bezierPoint1
+                                        if (controlPoint0 != .zero && controlPoint1 != .zero){
+                                            initialPoint0 = .init(
+                                                width: controlPoint0.x,
+                                                height: controlPoint0.y)
+                                            initialPoint1 = .init(
+                                                width: controlPoint1.x,
+                                                height: controlPoint1.y)
+                                        }
+                                    } else {
+                                        initialPoint0 = CGSize(width: 0.4, height: 0.3)
+                                        initialPoint1 = CGSize(width: 0.6, height: 0.6)
+                                        frame.transition.bezierPoint0 = initialPoint0.toPoint
+                                        frame.transition.bezierPoint1 = initialPoint1.toPoint
                                     }
                                     showEditor = true
                                 }
@@ -84,6 +91,15 @@ struct FrameView: View {
                                         }
                                     }.padding()
                                 }
+                            }
+                        case .fadeInFadeOut:
+                            StepPicker(steps: $frame.transition.steps)
+                            .onAppear(){
+                                initialPoint0 = CGSize(width: 0.8, height: 0.9)
+                                initialPoint1 = CGSize(width: 0.2, height: 0.1)
+                                frame.transition.bezierPoint0 = initialPoint0.toPoint
+                                frame.transition.bezierPoint1 = initialPoint1.toPoint
+                                showEditor = false
                             }
                         default: Spacer()
                     }

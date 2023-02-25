@@ -170,7 +170,6 @@ struct EditView: View {
                             )
                         }
                         
-                        Spacer()
                         Divider()
                         
                         Button(action: {addTimer()}, label: {
@@ -351,74 +350,85 @@ struct EditView: View {
     }
     
     func addSlide(valueOfSlide: Int) {
-        data.slides.append(Slide(number: (data.slides.count+1), frames: []))
+        data.slides.append(Slide(number: data.slides.count + 1, frames: data.slides[valueOfSlide].frames))
     }
     
     func addSlide() {
         if (selectedSlide != nil && data.slides.count > selectedSlide!) {
-            addSlide(valueOfSlide: selectedSlide!)
+            addSlide(valueOfSlide: selectedSlide! - 1)
         } else {
             data.slides.append(Slide(number: (data.slides.count+1), dmxData: DMXData.getDefault(), frames: []))
         }
     }
     
     func addTimer() {
-        if (selectedSlide != nil){
+        if let selectedSlide{
             let defaultDMX:[DMXData]
-            if(data.slides[selectedSlide!-1].frames.count > 0 ){
-                defaultDMX = data.slides[selectedSlide!-1].frames[data.slides[selectedSlide!-1].frames.count-1].dmxData
+            if(data.slides[selectedSlide - 1].frames.count > 0 ){
+                defaultDMX = data.slides[selectedSlide - 1].frames[data.slides[selectedSlide - 1].frames.count - 1].dmxData
             } else {
                 defaultDMX = DMXData.getDefault()
             }
-            data.slides[selectedSlide! - 1].frames.append(Frame(relativeTimeInSeconds: 2.5, dmxData:defaultDMX))
-            data.slides[selectedSlide!-1].frames.sort()
+            
+            let newTime = (data.slides[selectedSlide - 1].frames.max()?.relativeTimeInSeconds ?? 0) + 2.5
+            
+            if let selectedFrame{
+                data.slides[selectedSlide - 1].frames.append(Frame(relativeTimeInSeconds: newTime, dmxData: selectedFrame.dmxData, transition: selectedFrame.transition))
+            } else {
+                data.slides[selectedSlide - 1].frames.append(Frame(relativeTimeInSeconds: newTime, dmxData: defaultDMX))
+            }
+            
+            data.slides[selectedSlide - 1].frames.sort()
         }
     }
     
     func loadPasted(from array: [NSItemProvider]) {
-        guard let lastItem = array.last else {
-            assertionFailure("Nothing to paste")
-            return
-        }
-        lastItem.loadDataRepresentation(forTypeIdentifier: utType.identifier) {
-            (pasteData, error) in
-            guard error == nil else {
-                assertionFailure("Could not load data: \(error.debugDescription)")
+        DispatchQueue.main.async{
+            guard let lastItem = array.last else {
+                assertionFailure("Nothing to paste")
                 return
             }
-            guard let pasteData = pasteData else {
-                assertionFailure("Could not load data")
-                return
-            }
-            
-            // check if Slide can be parsed
-            if var parsedSlide = try? JSONDecoder().decode(Slide.self, from: Data(base64Encoded: pasteData) ?? Data()){
-                
-                parsedSlide.id = UUID()
-                
-                print(parsedSlide)
-                
-                if(parsedSlide.number == selectedSlide!){
-                    data.slides.append(Slide(number: data.slides.count + 1, frames: parsedSlide.frames))
-                } else {
-                    data.slides[selectedSlide!-1].frames = parsedSlide.frames
+            lastItem.loadDataRepresentation(forTypeIdentifier: utType.identifier) {
+                (pasteData, error) in
+                guard error == nil else {
+                    assertionFailure("Could not load data: \(error.debugDescription)")
+                    return
                 }
-            }
-            // check if Frame can be parsed
-            else if var parsedData = try? JSONDecoder().decode(Frame.self, from: Data(base64Encoded: pasteData)!){
-                print(parsedData)
-                
-                parsedData.id = UUID()
-                
-                if let selectedFrame, let selectedSlide, let frameIndex = data.slides[selectedSlide-1].frames.firstIndex(where: { f in
-                    return f.id == selectedFrame.id
-                }){
-                    data.slides[selectedSlide - 1].frames[frameIndex].dmxData = parsedData.dmxData
-                } else {
-                    data.slides[selectedSlide! - 1].frames.append(parsedData)
+                guard let pasteData = pasteData else {
+                    assertionFailure("Could not load data")
+                    return
                 }
-                data.slides[selectedSlide!-1].frames.sort()
-                print("Pasted")
+                
+                // check if Slide can be parsed
+                if var parsedSlide = try? JSONDecoder().decode(Slide.self, from: Data(base64Encoded: pasteData) ?? Data()){
+                    
+                    parsedSlide.id = UUID()
+                    
+                    print(parsedSlide)
+                    
+                    if(parsedSlide.number == selectedSlide!){
+                        data.slides.append(Slide(number: data.slides.count + 1, frames: parsedSlide.frames))
+                    } else {
+                        data.slides[selectedSlide!-1].frames = parsedSlide.frames
+                    }
+                }
+                // check if Frame can be parsed
+                else if var parsedData = try? JSONDecoder().decode(Frame.self, from: Data(base64Encoded: pasteData)!){
+                    print(parsedData)
+                    
+                    parsedData.id = UUID()
+                    
+                    if let selectedFrame, let selectedSlide, let frameIndex = data.slides[selectedSlide-1].frames.firstIndex(where: { f in
+                        return f.id == selectedFrame.id
+                    }){
+                        data.slides[selectedSlide - 1].frames[frameIndex].dmxData = parsedData.dmxData
+                        data.slides[selectedSlide - 1].frames[frameIndex].transition = parsedData.transition
+                    } else {
+                        data.slides[selectedSlide! - 1].frames.append(parsedData)
+                    }
+                    data.slides[selectedSlide!-1].frames.sort()
+                    print("Pasted")
+                }
             }
         }
     }

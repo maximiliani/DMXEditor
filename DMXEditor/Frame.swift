@@ -28,13 +28,13 @@ struct Frame: Identifiable, Codable, Comparable, Hashable {
         id = try values.decode(UUID.self, forKey: .id)
         relativeTimeInSeconds = try values.decode(Double.self, forKey: .relativeTimeInSeconds)
         dmxData = try values.decode([DMXData].self, forKey: .dmxData)
-        transition = try values.decodeIfPresent(DMXTransition.self, forKey: .transition) ?? DMXTransition(mode: .none, steps: 0)
+        transition = try values.decodeIfPresent(DMXTransition.self, forKey: .transition) ?? DMXTransition(mode: .fadeInFadeOut, steps: 32)
     }
     
     init(relativeTimeInSeconds: Double, dmxData: [DMXData]){
         self.relativeTimeInSeconds = relativeTimeInSeconds
         self.dmxData = dmxData
-        transition = DMXTransition(mode: .none, steps: 0)
+        transition = DMXTransition(mode: .fadeInFadeOut, steps: 32)
     }
     
     init(relativeTimeInSeconds: Double, dmxData: [DMXData], transition: DMXTransition){

@@ -14,6 +14,7 @@ struct DMXTransition: Codable, Identifiable, Hashable {
         case none
         case linear
         case bezier
+        case fadeInFadeOut
     }
     
     var id: UUID = UUID()
@@ -26,6 +27,7 @@ struct DMXTransition: Codable, Identifiable, Hashable {
                 case .none: return [to]
                 case .linear: return animateLinear(from: from, to: to)
                 case .bezier: return animateBezier(from: from, to: to)
+                case .fadeInFadeOut: return animateBezier(from: from, to: to)
             }
         } else {
             return [to]

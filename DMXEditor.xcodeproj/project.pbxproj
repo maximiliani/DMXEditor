@@ -17,6 +17,8 @@
 		A770FBAD285CF06800BBA4AF /* AppleScriptRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A770FBAC285CF06800BBA4AF /* AppleScriptRunner.swift */; };
 		A7AAEE8727CD2AC400B7BBA7 /* OLAHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AAEE8627CD2AC400B7BBA7 /* OLAHandler.swift */; };
 		A7AAEE8927CD36EB00B7BBA7 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AAEE8827CD36EB00B7BBA7 /* GeneralSettingsView.swift */; };
+		A7B0345729AA71C900CB9426 /* CurveEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B0345629AA71C900CB9426 /* CurveEditorView.swift */; };
+		A7B0345929AA7A1C00CB9426 /* StepPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B0345829AA7A1C00CB9426 /* StepPicker.swift */; };
 		A7E20048292E2DB700676956 /* CurveEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E20047292E2DB700676956 /* CurveEditor.swift */; };
 		A7E2004A292E2F1200676956 /* GeometryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E20049292E2F1200676956 /* GeometryExtensions.swift */; };
 		A7E2004C292E2F1800676956 /* Dragging.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E2004B292E2F1800676956 /* Dragging.swift */; };
@@ -51,6 +53,8 @@
 		A770FBAC285CF06800BBA4AF /* AppleScriptRunner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleScriptRunner.swift; sourceTree = "<group>"; };
 		A7AAEE8627CD2AC400B7BBA7 /* OLAHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OLAHandler.swift; sourceTree = "<group>"; };
 		A7AAEE8827CD36EB00B7BBA7 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
+		A7B0345629AA71C900CB9426 /* CurveEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurveEditorView.swift; sourceTree = "<group>"; };
+		A7B0345829AA7A1C00CB9426 /* StepPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepPicker.swift; sourceTree = "<group>"; };
 		A7E20047292E2DB700676956 /* CurveEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurveEditor.swift; sourceTree = "<group>"; };
 		A7E20049292E2F1200676956 /* GeometryExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryExtensions.swift; sourceTree = "<group>"; };
 		A7E2004B292E2F1800676956 /* Dragging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dragging.swift; sourceTree = "<group>"; };
@@ -149,6 +153,8 @@
 				A7E7BC3527C13406000A83BB /* MultiSliderEditable.swift */,
 				A7E7BC3727C171E6000A83BB /* SingleSliderEditable.swift */,
 				A7E20047292E2DB700676956 /* CurveEditor.swift */,
+				A7B0345629AA71C900CB9426 /* CurveEditorView.swift */,
+				A7B0345829AA7A1C00CB9426 /* StepPicker.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -255,6 +261,7 @@
 				A711E41327BEE9CA009E1205 /* DMXEditorApp.swift in Sources */,
 				A7E7BC2827BEEACE000A83BB /* DMXData.swift in Sources */,
 				A7E7BC2627BEEACE000A83BB /* SettingsView.swift in Sources */,
+				A7B0345729AA71C900CB9426 /* CurveEditorView.swift in Sources */,
 				A7E7BC3227BEEACE000A83BB /* RGBPicker.swift in Sources */,
 				A74CC471291E8E290069F387 /* FrameView.swift in Sources */,
 				A7E7BC3A27C2C48C000A83BB /* SlideEditView.swift in Sources */,
@@ -265,6 +272,7 @@
 				A7E7BC3027BEEACE000A83BB /* Device.swift in Sources */,
 				A74CC46D291E74D70069F387 /* Frame.swift in Sources */,
 				A7E7BC2927BEEACE000A83BB /* EditView.swift in Sources */,
+				A7B0345929AA7A1C00CB9426 /* StepPicker.swift in Sources */,
 				A7E7BC2E27BEEACE000A83BB /* SingleSlider.swift in Sources */,
 				A74CC4772924F7E90069F387 /* DMXTransition.swift in Sources */,
 				A7E20048292E2DB700676956 /* CurveEditor.swift in Sources */,
